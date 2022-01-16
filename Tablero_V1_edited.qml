@@ -57,15 +57,17 @@ Rectangle {
 		id: bt02
 		x : 10
 		y : 70
-		text: "ON led 11"
+		text: "graph show"
 		onClicked:{
-			if(bt02.text == "ON led 11"){
+			if(bt02.text == "graph show"){
 				Tablero.setLed(11,'H')
-				text = "OFF led 11";
+				text = "graph hide";
+				chart.visible = true;
 			}else
-				if(bt02.text == "OFF led 11"){
+				if(bt02.text == "graph hide"){
 					Tablero.setLed(11,'L')
-					text = "ON led 11";
+					text = "graph show";
+					chart.visible = false;
 				}
 		}
     }
@@ -591,6 +593,53 @@ Rectangle {
 			font.pointSize: 24
 			color: "#000000"
 		}
+	}
+	
+	
+	Rectangle {
+		id: chart
+		x : 500
+		y : 400
+		visible: true
+		width: 500
+		height: 300
+		color: "#969696"
+		
+	ChartView {
+    title: "Температура"
+    antialiasing: true
+    legend.visible: false
+    height: parent.height
+    anchors.right: parent.right
+    anchors.left: parent.left
+	 LineSeries {
+          name: "LineSeries"
+		  /*
+          XYPoint { x: 1; y: 0 }
+          XYPoint { x: 1.1; y: 2.1 }
+          XYPoint { x: 1.9; y: 3.3 }
+          XYPoint { x: 2.1; y: 2.1 }
+          XYPoint { x: 2.9; y: 4.9 }
+		  */
+          XYPoint { x: 3.4; y: 3.0 }
+          XYPoint { x: 4.1; y: 3.3 }
+		  XYPoint { x: 5; y: 4.9 }
+          XYPoint { x: 6; y: 3.0 }
+          XYPoint { x: 7; y: 3.3 }
+      }
+	/*
+    SplineSeries {
+         color: "#5fafff"
+         XYPoint { x: 0; y: 0 }
+         XYPoint { x: 0.5; y: 1.1 }
+         XYPoint { x: 1.0; y: 2.9 }
+         XYPoint { x: 1.5; y: 2.1 }
+         XYPoint { x: 2.0; y: 4.9 }
+         XYPoint { x: 2.5; y: 3.4 }
+         XYPoint { x: 3.0; y: 4.1 }
+		}
+	*/
+	}
 	}
 	
 	
